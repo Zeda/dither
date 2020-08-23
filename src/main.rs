@@ -80,19 +80,23 @@ fn main() {
         }
     }
 
-    for y in 1..height {
-        for x in 1..width {
+    for y in 0..height {
+        for x in 0..width {
             let pixel = src.get_pixel(x, y);
             image.put_pixel(x, y, image::Rgb([pixel[0],pixel[1],pixel[2]]));
         }
     }
 
-    for y in 1..height {
-        for x in 1..width {
+    for y in 0..height {
+        for x in 0..width {
             let pixel = image.get_pixel(x, y);
             r = pixel[0];
             g = pixel[1];
             b = pixel[2];
+
+// Jaguar: "#000000" "#FBFFFF" "#CB8A2C" "#8EA6BA" "#385169" "#FBCF8E" "#714500" "#8E756D" "#CBD7CF" "#283C20" "#C3AA71" "#695D3C" "#65869A" "#A2690C" "#381004" "#EFA651"
+// Calculator: "#515538" "#EBEBC3" "#A6AE65" "#000400"
+
 
 // Now select the closest palette match
             c0 = palette[0][0];
