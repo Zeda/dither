@@ -73,13 +73,12 @@ fn main() {
     let mut image = ImageBuffer::<Rgb<u8>, Vec<u8>>::new(width, height);
 
     palette_size = 0;
-    for i in 2.. (args.len() - 1) {
+    for i in 2.. args.len() {
         if args[i].chars().next().unwrap() == '#' {
             palette[palette_size] = to_color(&args[i]);
             palette_size += 1;
         }
     }
-
 
     for y in 1..height {
         for x in 1..width {
@@ -92,15 +91,15 @@ fn main() {
         for x in 1..width {
             let pixel = image.get_pixel(x, y);
             r = pixel[0];
-            g = pixel[0];
-            b = pixel[0];
+            g = pixel[1];
+            b = pixel[2];
 
 // Now select the closest palette match
             c0 = palette[0][0];
             c1 = palette[0][1];
             c2 = palette[0][2];
-            let mut delta:u32 = dist8(r,c0) + dist8(g,c1) + dist8(b,c1);
-            for i in 1.. (palette_size - 1) {
+            let mut delta:u32 = dist8(r,c0) + dist8(g,c1) + dist8(b,c2);
+            for i in 1.. palette_size {
                 let dist:u32 = dist8(r, palette[i][0]) +
                                dist8(g, palette[i][1]) +
                                dist8(b, palette[i][2]);
